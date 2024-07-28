@@ -1,3 +1,4 @@
+import styles from "./home.module.css";
 import { BookLists } from "@/model/type";
 import Link from "next/link";
 
@@ -20,16 +21,27 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>Home</h1>
-      <ul>
-        {bookLists.map((category) => (
-          <li key={category.list_name}>
-            <Link href={`/list/${category.list_name_encoded}`}>
-              {category.display_name}
+      <section className={styles.section}>
+        <h1 className={styles.title}>
+          <span className={styles.word}>THE</span>
+          <span className={styles.word}>NEW</span>
+          <span className={styles.word}>YORK</span>
+          <span className={styles.word}>TIMES</span>
+          <span className={styles.word}>BEST</span>
+          <span className={styles.word}>SELLERS</span>
+          <span className={styles.word}>EXPLORER</span>
+        </h1>
+        <ul className={styles.list}>
+          {bookLists.map((category) => (
+            <Link
+              key={category.list_name}
+              href={`/list/${category.list_name_encoded}`}
+            >
+              <li className={styles.category}>{category.display_name} →</li>
             </Link>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </ul>
+      </section>
     </main>
   );
 }
